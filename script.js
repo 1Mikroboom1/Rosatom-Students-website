@@ -43,19 +43,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ensure modal is hidden on load
     loginModal.classList.add('hidden');
+    loginModal.style.display = 'none'; // Ensure it's hidden even if CSS fails
     console.log('Modal hidden on load:', loginModal.classList.contains('hidden'));
 
+    // Prevent auto-focus on loginBtn
+    loginBtn.removeAttribute('autofocus');
+    loginBtn.blur();
+
+    // Open modal only on user-initiated click
     loginBtn.addEventListener('click', (e) => {
+        if (!e.isTrusted) {
+            console.log('Ignoring non-user-initiated click on login button');
+            return;
+        }
         e.stopPropagation();
         console.log('Login button clicked');
         loginModal.classList.remove('hidden');
+        loginModal.style.display = 'flex'; // Ensure it displays
         console.log('Modal opened:', !loginModal.classList.contains('hidden'));
+    });
+
+    // Log focus events for debugging
+    loginBtn.addEventListener('focus', () => {
+        console.log('Login button focused');
     });
 
     closeModal.addEventListener('click', (e) => {
         e.stopPropagation();
         console.log('Close button clicked');
         loginModal.classList.add('hidden');
+        loginModal.style.display = 'none';
         console.log('Modal closed:', loginModal.classList.contains('hidden'));
     });
 
@@ -70,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!modalContent.contains(e.target) && e.target !== loginBtn) {
             console.log('Clicked outside modal');
             loginModal.classList.add('hidden');
+            loginModal.style.display = 'none';
             console.log('Modal closed:', loginModal.classList.contains('hidden'));
         }
     });

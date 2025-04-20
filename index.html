@@ -43,17 +43,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Студенты Росатома</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles for the content sections */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 20px;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stats p {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+        }
+        .quote p {
+            margin: 5px 0;
+        }
+        .about, .goal {
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .traits {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .trait {
+            text-align: center;
+            width: 120px;
+        }
+        .trait img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .trait p {
+            margin: 10px 0 0;
+        }
+        .tasks-section .task-description img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .task-description > div {
+            display: none;
+        }
+        .task-description > div.active {
+            display: block;
+        }
+        .social-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: white;
+            color: #0066cc;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .social-btn:hover {
+            background-color: #e6f2ff;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="logo">Студенты Росатома</div>
+        <img class="logo_sr" src="assets\Студенты Росатома Горизонтальный Белый.svg" alt="Студенты Росатома">
         <div class="header-buttons">
-            <button id="menuBtn">Студенты Росатома</button>
+            <button id="menuBtn">Меню</button>
             <button id="loginBtn">Войти в кабинет</button>
         </div>
     </header>
+
+    <!-- Join Community Button -->
+    <a href="https://vk.com/@rosatomstudent-prisoedinyaisya-k-soobschestvu-studentov-rosatoma" class="join-btn" id="joinBtn">Вступить в сообщество</a>
 
     <!-- Menu (Hidden by default) -->
     <div id="menu" class="menu hidden">
@@ -83,30 +163,98 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Join Community Button -->
-        <a href="https://example.com/join" class="join-btn">Вступить в сообщество</a>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Студенты Росатома</h1>
+            <div class="stats">
+                <p>3800 в ВК</p>
+                <p>ячеек ВУЗов 2<sup>6</sup></p>
+            </div>
+            <div class="quote">
+                <p>«Я выбираю быть молодым</p>
+                <p>Я выбираю быть успешным</p>
+                <p>Сквозь тернии к звездам</p>
+                <p>В любом пути</p>
+                <p>Студент Росатома</p>
+                <p>Страны надежда!»</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about">
+            <h2>Кто мы?</h2>
+            <p>Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст</p>
+        </section>
+
+        <!-- Goal Section -->
+        <section class="goal">
+            <h2>Наша цель</h2>
+            <p>Объединение студентов для быстрой прямой коммуникации с предприятиями Росатома и осознанного выбора будущих карьерных траекторий</p>
+            <div class="traits">
+                <div class="trait">
+                    <img src="https://via.placeholder.com/100" alt="Активный">
+                    <p>Активный</p>
+                </div>
+                <div class="trait">
+                    <img src="https://via.placeholder.com/100" alt="Креативный">
+                    <p>Креативный</p>
+                </div>
+                <div class="trait">
+                    <img src="https://via.placeholder.com/100" alt="Стремится узнать новое">
+                    <p>Стремится узнать новое</p>
+                </div>
+                <div class="trait">
+                    <img src="https://via.placeholder.com/100" alt="Комуникабельный">
+                    <p>Комуникабельный</p>
+                </div>
+                <div class="trait">
+                    <img src="https://via.placeholder.com/100" alt="Хочет построить карьеру">
+                    <p>Хочет построить карьеру в Росатоме</p>
+                </div>
+            </div>
+        </section>
 
         <!-- Tasks Section -->
         <section class="tasks-section">
+            <h2>Задачи</h2>
             <div class="tasks-list">
-                <h2>Задачи</h2>
                 <ul>
-                    <li data-task="task1">Что руководителя ФНО и его ФНО</li>
-                    <li data-task="task2">Что руководителя ФНО по направлению контакта с предприятиями и его ФНО</li>
-                    <li data-task="task3">Что руководителя по направлению работы со школьниками в ВУЗе, его ФНО</li>
+                    <li class="task-item active" data-task="task1">Информирование о деятельности Росатома</li>
+                    <li class="task-item" data-task="task2">Привлечение школьников на технические специальности</li>
+                    <li class="task-item" data-task="task3">Создание базы высокопотенциальных студентов</li>
+                    <li class="task-item" data-task="task4">Организация прямого взаимодействия с предприятием</li>
+                    <li class="task-item" data-task="task5">Выступление/участие/организация мероприятий Росатома</li>
                 </ul>
             </div>
             <div class="task-description">
-                <h2>Что руководителя ФНО и его ФНО</h2>
-                <p>Описание задачи: Руководитель ФНО должен...</p>
+                <div id="task1" class="task-desc active">
+                    <p>Текст об информировании</p>
+                    <img src="assets\Информирование.png" alt="Информирование">
+                </div>
+                <div id="task2" class="task-desc">
+                    <p>Текст о привлечении школьников</p>
+                    <img src="assets\Привлечение школьников.png" alt="Привлечение школьников">
+                </div>
+                <div id="task3" class="task-desc">
+                    <p>Текст о создании базы студентов</p>
+                    <img src="assets\База студентов.png" alt="База студентов">
+                </div>
+                <div id="task4" class="task-desc">
+                    <p>Текст о взаимодействии с предприятиями</p>
+                    <img src="assets\Взаимодействие.png" alt="Взаимодействие">
+                </div>
+                <div id="task5" class="task-desc">
+                    <p>Текст о мероприятиях</p>
+                    <img src="assets\Мероприятия.png" alt="Мероприятия">
+                </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <a href="https://t.me/rosatom_students" class="footer-link">Телеграм</a>
-        <a href="https://vk.com/rosatom_students" class="footer-link">Группа ВК</a>
+        <a href="https://t.me/rosatomstudent" class="footer-link social-btn">Телеграм</a>
+        <a href="https://vk.com/rosatomstudent" class="footer-link social-btn">Группа ВК</a>
     </footer>
 
     <script src="script.js"></script>

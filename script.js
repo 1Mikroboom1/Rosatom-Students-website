@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ensure modal is hidden on load
     loginModal.classList.add('hidden');
-    loginModal.style.display = 'none'; // Ensure it's hidden even if CSS fails
+    loginModal.style.display = 'none';
     console.log('Modal hidden on load:', loginModal.classList.contains('hidden'));
 
     // Prevent auto-focus on loginBtn
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.stopPropagation();
         console.log('Login button clicked');
         loginModal.classList.remove('hidden');
-        loginModal.style.display = 'flex'; // Ensure it displays
+        loginModal.style.display = 'flex';
         console.log('Modal opened:', !loginModal.classList.contains('hidden'));
     });
 
@@ -93,27 +93,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Tasks Section
-    const taskItems = document.querySelectorAll('.tasks-list li');
-    const taskDescription = document.querySelector('.task-description');
+    const taskItems = document.querySelectorAll('.task-item');
+    const taskDescriptions = document.querySelectorAll('.task-description > div');
 
     taskItems.forEach(item => {
         item.addEventListener('click', () => {
             const taskId = item.getAttribute('data-task');
-            let description = '';
 
-            switch (taskId) {
-                case 'task1':
-                    description = '<h2>Что руководителя ФНО и его ФНО</h2><p>Описание задачи: Руководитель ФНО должен...</p>';
-                    break;
-                case 'task2':
-                    description = '<h2>Что руководителя ФНО по направлению контакта с предприятиями и его ФНО</h2><p>Описание задачи: Руководитель по направлению...</p>';
-                    break;
-                case 'task3':
-                    description = '<h2>Что руководителя по направлению работы со школьниками в ВУЗе, его ФНО</h2><p>Описание задачи: Руководитель должен организовать...</p>';
-                    break;
+            // Remove active class from all task items and descriptions
+            taskItems.forEach(i => i.classList.remove('active'));
+            taskDescriptions.forEach(desc => desc.classList.remove('active'));
+
+            // Add active class to the clicked task item and corresponding description
+            item.classList.add('active');
+            const activeDesc = document.getElementById(taskId);
+            if (activeDesc) {
+                activeDesc.classList.add('active');
             }
-
-            taskDescription.innerHTML = description;
         });
     });
 
@@ -126,6 +122,27 @@ document.addEventListener('DOMContentLoaded', () => {
             eventCards.forEach(c => c.classList.remove('expanded'));
             // Add expanded class to clicked card
             card.classList.add('expanded');
+        });
+    });
+
+    // Join Community Button
+    const joinBtn = document.getElementById('joinBtn');
+    joinBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open('https://vk.com/@rosatomstudent-prisoedinyaisya-k-soobschestvu-studentov-rosatoma', '_blank');
+    });
+
+    // Social Buttons
+    const socialBtns = document.querySelectorAll('.social-btn');
+    socialBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const platform = btn.textContent.trim();
+            if (platform === 'Телеграм') {
+                window.open('https://t.me/rosatomstudent', '_blank');
+            } else if (platform === 'Группа ВК') {
+                window.open('https://vk.com/rosatomstudent', '_blank');
+            }
         });
     });
 });

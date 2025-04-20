@@ -21,6 +21,10 @@ body {
     font-weight: bold;
 }
 
+.logo_sr {
+    width: 10%;
+}
+
 .header-buttons button {
     margin-left: 10px;
     padding: 10px 20px;

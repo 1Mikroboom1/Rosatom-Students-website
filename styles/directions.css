@@ -1,0 +1,29 @@
+/* Стили для страницы направлений */
+.directions-content {
+  margin: 2rem 0;
+}
+
+.video-section {
+  margin-bottom: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.university-lists {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.university-list {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.university-list h3 {
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}

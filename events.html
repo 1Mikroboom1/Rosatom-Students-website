@@ -1,62 +1,24 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Наши мероприятия - Студенты Росатома</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Наши мероприятия | Студенты Росатома</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/events.css">
     <link rel="icon" type="image/x-icon" href="assets/icon.png">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header with original structure -->
     <header class="header">
-        <img class="logo_sr" src="assets\Студенты Росатома Горизонтальный Белый.svg" alt="Студенты Росатома">
+        <img class="logo_sr" src="assets/Студенты Росатома Горизонтальный Белый.svg" alt="Студенты Росатома">
         <div class="header-buttons">
             <button id="menuBtn">Меню</button>
             <button id="loginBtn">Войти в кабинет</button>
         </div>
     </header>
 
-    <!-- Menu (Hidden by default) -->
+    <!-- Original menu structure -->
     <div id="menu" class="menu hidden">
         <div class="menu-content">
             <a href="index.html">Главная страница</a>
@@ -68,7 +30,7 @@
         </div>
     </div>
 
-    <!-- Login Modal (Hidden by default) -->
+    <!-- Original modal structure -->
     <div id="loginModal" class="modal hidden">
         <div class="modal-content">
             <span id="closeModal" class="close">×</span>
@@ -82,41 +44,78 @@
         </div>
     </div>
 
-    <!-- Main Content -->
-    <main>
+    <!-- Основной контент страницы -->
+    <main class="events-main">
         <h1>Мероприятия</h1>
-        <section class="events-grid">
+        
+        <div class="events-quote">
+            <p>"муха не летает просто так,</p>
+            <p>у мухи есть цель"</p>
+        </div>
+        
+        <div class="events-grid">
             <div class="event-card">
-                <img src="https://via.placeholder.com/300x200" alt="Event 1">
-                <h3>КВН 5 лет школьной программе Росатома</h3>
-                <p>КВН, посвященный 5-летию школьной программы Росатома...</p>
+                <div class="event-front">
+                    <h3>КВИЗ</h3>
+                    <p>ЛЕТ 1000 ЛЕТ ОБНИМСКОЙ</p>
+                </div>
+                <div class="event-back">
+                    <h3>КВИЗ</h3>
+                    <p>Подробная информация о мероприятии КВИЗ ЛЕТ 1000 ЛЕТ ОБНИМСКОЙ.</p>
+                    <p>Дата: 15 мая 2024</p>
+                    <p>Место: Онлайн</p>
+                    <button class="register-btn">Зарегистрироваться</button>
+                </div>
             </div>
+            
             <div class="event-card">
-                <img src="https://via.placeholder.com/300x200" alt="Event 2">
-                <h3>Встреча студентов Росатома</h3>
-                <p>Ежегодная встреча студентов Росатома...</p>
+                <div class="event-front">
+                    <h3>КВИЗ</h3>
+                    <p>ЛЕТ 1000 ЛЕТ ОБНИМСКОЙ</p>
+                </div>
+                <div class="event-back">
+                    <h3>КВИЗ</h3>
+                    <p>Подробная информация о мероприятии КВИЗ ЛЕТ 1000 ЛЕТ ОБНИМСКОЙ.</p>
+                    <p>Дата: 15 мая 2024</p>
+                    <p>Место: Онлайн</p>
+                    <button class="register-btn">Зарегистрироваться</button>
+                </div>
             </div>
+            
             <div class="event-card">
-                <img src="https://via.placeholder.com/300x200" alt="Event 3">
-                <h3>AtomSkills 2024</h3>
-                <p>Чемпионат AtomSkills 2024...</p>
+                <div class="event-front">
+                    <h3>МЕЙС-ЧЕМПИОНАТ</h3>
+                    <p>посвящённый<br>125-летию<br>Н.А. ДОЛЛЕЖАЛЯ</p>
+                </div>
+                <div class="event-back">
+                    <h3>МЕЙС-ЧЕМПИОНАТ</h3>
+                    <p>Подробная информация о мейс-чемпионате, посвящённом 125-летию Н.А. Доллежаля.</p>
+                    <p>Дата: 20 июня 2024</p>
+                    <p>Место: Москва</p>
+                    <button class="register-btn">Зарегистрироваться</button>
+                </div>
             </div>
+            
             <div class="event-card">
-                <img src="https://via.placeholder.com/300x200" alt="Event 4">
-                <p>КЕЧО-ЧУМНОЙ полезный долбежный...</p>
+                <div class="event-front">
+                    <h3>AtomSkills 2024</h3>
+                </div>
+                <div class="event-back">
+                    <h3>AtomSkills 2024</h3>
+                    <p>Покоряй новые вершины с Atomskills-2024!</p>
+                    <p>Открылся набор на студенческий форум в рамках Atomskills-2024. Если ты студент опорного вуза и/или житель города присутствия Росатома, то скорее подавай заявку до 23.04!</p>
+                    <div class="event-stats">
+                        <span>46</span>
+                        <span>10</span>
+                        <span>912</span>
+                    </div>
+                    <button class="register-btn">Зарегистрироваться</button>
+                </div>
             </div>
-            <div class="event-card">
-                <img src="https://via.placeholder.com/300x200" alt="Event 5">
-                <p>Встреча студентов Росатома...</p>
-            </div>
-            <div class="event-card">
-                <img src="https://via.placeholder.com/300x200" alt="Event 6">
-                <p>Форум студентов...</p>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer with original structure -->
     <footer class="footer">
         <a href="https://t.me/rosatomstudent" class="footer-link social-btn">Телеграм</a>
         <a href="https://vk.com/rosatomstudent" class="footer-link social-btn">Группа ВК</a>

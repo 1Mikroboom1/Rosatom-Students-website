@@ -1,0 +1,48 @@
+/* Стили для страницы "О нас" */
+.university-info {
+  margin: 2rem 0;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.leaders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.leader-card {
+  text-align: center;
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: var(--text-dark);
+}
+
+.leader-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.info-section {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  color: var(--text-dark);
+  margin-top: 2rem;
+}
+
+.join-btn {
+  display: inline-block;
+  background: var(--button-bg);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 1rem;
+}

@@ -1,62 +1,24 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Предприятия-партнёры - Студенты Росатома</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Предприятия-партнеры | Студенты Росатома</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/partners.css">
     <link rel="icon" type="image/x-icon" href="assets/icon.png">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header with original structure -->
     <header class="header">
-        <img class="logo_sr" src="assets\Студенты Росатома Горизонтальный Белый.svg" alt="Студенты Росатома">
+        <img class="logo_sr" src="assets/Студенты Росатома Горизонтальный Белый.svg" alt="Студенты Росатома">
         <div class="header-buttons">
             <button id="menuBtn">Меню</button>
             <button id="loginBtn">Войти в кабинет</button>
         </div>
     </header>
 
-    <!-- Menu (Hidden by default) -->
+    <!-- Original menu structure -->
     <div id="menu" class="menu hidden">
         <div class="menu-content">
             <a href="index.html">Главная страница</a>
@@ -68,7 +30,7 @@
         </div>
     </div>
 
-    <!-- Login Modal (Hidden by default) -->
+    <!-- Original modal structure -->
     <div id="loginModal" class="modal hidden">
         <div class="modal-content">
             <span id="closeModal" class="close">×</span>
@@ -82,29 +44,30 @@
         </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Основной контент страницы -->
     <main>
-        <h1>Предприятия-партнёры</h1>
-        <section class="content-section">
-            <div class="content-block">
+        <h1>Предприятия-партнеры</h1>
+        
+        <section class="partners-grid">
+            <div class="partner-card">
+                <img src="https://via.placeholder.com/300x200" alt="Росатом">
                 <h2>Росатом</h2>
                 <p>Государственная корпорация, обеспечивающая полный цикл производства в ядерной отрасли.</p>
-                <img src="https://via.placeholder.com/300x200" alt="Росатом">
             </div>
-            <div class="content-block">
+            <div class="partner-card">
+                <img src="https://via.placeholder.com/300x200" alt="ТВЭЛ">
                 <h2>ТВЭЛ</h2>
                 <p>Крупнейший производитель ядерного топлива, входящий в состав Росатома.</p>
-                <img src="https://via.placeholder.com/300x200" alt="ТВЭЛ">
             </div>
-            <div class="content-block">
+            <div class="partner-card">
+                <img src="https://via.placeholder.com/300x200" alt="Атомэнергомаш">
                 <h2>Атомэнергомаш</h2>
                 <p>Машиностроительный дивизион Росатома, специализирующийся на оборудовании для АЭС.</p>
-                <img src="https://via.placeholder.com/300x200" alt="Атомэнергомаш">
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer with original structure -->
     <footer class="footer">
         <a href="https://t.me/rosatomstudent" class="footer-link social-btn">Телеграм</a>
         <a href="https://vk.com/rosatomstudent" class="footer-link social-btn">Группа ВК</a>

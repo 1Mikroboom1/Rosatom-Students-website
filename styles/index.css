@@ -1,0 +1,134 @@
+/* Стили для главной страницы */
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.stats p {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.quote {
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.about, .goal, .tasks {
+  margin-bottom: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+h2 {
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.traits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.trait {
+  text-align: center;
+  width: 150px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.trait img {
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.tasks-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.task-list {
+  flex: 1;
+}
+
+.task-item {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.task-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.task-item.active {
+  background: var(--button-bg);
+  color: white;
+}
+
+.task-description {
+  flex: 2;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.task-desc {
+  display: none;
+}
+
+.task-desc.active {
+  display: block;
+}
+
+.task-desc img {
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  border-radius: 4px;
+}
+
+/* Адаптивность для главной страницы */
+@media (max-width: 768px) {
+  .tasks-container {
+    flex-direction: column;
+  }
+  
+  .traits {
+    gap: 1rem;
+  }
+  
+  .trait {
+    width: 120px;
+  }
+}

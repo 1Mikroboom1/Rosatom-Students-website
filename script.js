@@ -1,143 +1,50 @@
-console.log('Script loaded and starting execution');
-
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded and parsed');
-
-    // Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    // Универсальный код для меню
     const menuBtn = document.getElementById('menuBtn');
     const menu = document.getElementById('menu');
     
-    if (!menuBtn || !menu) {
-        console.error('Menu elements not found:', { menuBtn, menu });
-        return;
+    if (menuBtn && menu) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (!menu.contains(e.target) && e.target !== menuBtn) {
+                menu.style.display = 'none';
+            }
+        });
     }
 
-    menuBtn.addEventListener('click', () => {
-        console.log('Menu button clicked');
-        menu.classList.toggle('hidden');
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target) && e.target !== menuBtn) {
-            menu.classList.add('hidden');
-        }
-    });
-
-    // Login Modal
+    // Универсальный код для модального окна
     const loginBtn = document.getElementById('loginBtn');
     const loginModal = document.getElementById('loginModal');
     const closeModal = document.getElementById('closeModal');
-    const modalContent = loginModal ? loginModal.querySelector('.modal-content') : null;
-
-    // Debug logs to confirm elements are found
-    console.log('loginBtn:', loginBtn);
-    console.log('loginModal:', loginModal);
-    console.log('closeModal:', closeModal);
-    console.log('modalContent:', modalContent);
-
-    if (!loginBtn || !loginModal || !closeModal || !modalContent) {
-        console.error('Modal elements not found:', { loginBtn, loginModal, closeModal, modalContent });
-        return;
-    }
-
-    // Ensure modal is hidden on load
-    loginModal.classList.add('hidden');
-    loginModal.style.display = 'none';
-    console.log('Modal hidden on load:', loginModal.classList.contains('hidden'));
-
-    // Prevent auto-focus on loginBtn
-    loginBtn.removeAttribute('autofocus');
-    loginBtn.blur();
-
-    // Open modal only on user-initiated click
-    loginBtn.addEventListener('click', (e) => {
-        if (!e.isTrusted) {
-            console.log('Ignoring non-user-initiated click on login button');
-            return;
-        }
-        e.stopPropagation();
-        console.log('Login button clicked');
-        loginModal.classList.remove('hidden');
-        loginModal.style.display = 'flex';
-        console.log('Modal opened:', !loginModal.classList.contains('hidden'));
-    });
-
-    // Log focus events for debugging
-    loginBtn.addEventListener('focus', () => {
-        console.log('Login button focused');
-    });
-
-    closeModal.addEventListener('click', (e) => {
-        e.stopPropagation();
-        console.log('Close button clicked');
-        loginModal.classList.add('hidden');
-        loginModal.style.display = 'none';
-        console.log('Modal closed:', loginModal.classList.contains('hidden'));
-    });
-
-    // Prevent clicks inside modal content from closing the modal
-    modalContent.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-
-    // Close modal when clicking outside the modal content
-    document.addEventListener('click', (e) => {
-        if (loginModal.classList.contains('hidden')) return;
-        if (!modalContent.contains(e.target) && e.target !== loginBtn) {
-            console.log('Clicked outside modal');
-            loginModal.classList.add('hidden');
+    
+    if (loginBtn && loginModal && closeModal) {
+        loginBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            loginModal.style.display = 'flex';
+        });
+        
+        closeModal.addEventListener('click', function(e) {
+            e.stopPropagation();
             loginModal.style.display = 'none';
-            console.log('Modal closed:', loginModal.classList.contains('hidden'));
-        }
-    });
-
-    // Tasks Section
-    const taskItems = document.querySelectorAll('.task-item');
-    const taskDescriptions = document.querySelectorAll('.task-description > div');
-
-    taskItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const taskId = item.getAttribute('data-task');
-
-            // Remove active class from all task items and descriptions
-            taskItems.forEach(i => i.classList.remove('active'));
-            taskDescriptions.forEach(desc => desc.classList.remove('active'));
-
-            // Add active class to the clicked task item and corresponding description
-            item.classList.add('active');
-            const activeDesc = document.getElementById(taskId);
-            if (activeDesc) {
-                activeDesc.classList.add('active');
+        });
+        
+        loginModal.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
             }
         });
-    });
+    }
 
-    // Event Cards (for events.html)
-    const eventCards = document.querySelectorAll('.event-card');
-
-    eventCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // Remove expanded class from all cards
-            eventCards.forEach(c => c.classList.remove('expanded'));
-            // Add expanded class to clicked card
-            card.classList.add('expanded');
-        });
-    });
-
-    // Join Community Button
-    const joinBtn = document.getElementById('joinBtn');
-    joinBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.open('https://vk.com/@rosatomstudent-prisoedinyaisya-k-soobschestvu-studentov-rosatoma', '_blank');
-    });
-
-    // Social Buttons
+    // Универсальный код для социальных кнопок
     const socialBtns = document.querySelectorAll('.social-btn');
     socialBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', function(e) {
             e.preventDefault();
-            const platform = btn.textContent.trim();
+            const platform = this.textContent.trim();
             if (platform === 'Телеграм') {
                 window.open('https://t.me/rosatomstudent', '_blank');
             } else if (platform === 'Группа ВК') {
@@ -145,4 +52,63 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Tasks functionality
+    const taskItems = document.querySelectorAll('.task-item');
+    
+    taskItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Remove active class from all items
+            taskItems.forEach(i => i.classList.remove('active'));
+            
+            // Add active class to clicked item
+            this.classList.add('active');
+            
+            // Hide all descriptions
+            document.querySelectorAll('.task-desc').forEach(desc => {
+                desc.classList.remove('active');
+            });
+            
+            // Show corresponding description
+            const taskId = this.getAttribute('data-task');
+            document.getElementById(`task-${taskId}`).classList.add('active');
+        });
+    });
+    
+    // Event Cards
+    const eventCards = document.querySelectorAll('.event-card');
+    
+    eventCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // If this card is already active, do nothing
+            if (this.classList.contains('active')) return;
+            
+            // Remove active class from all cards
+            eventCards.forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked card
+            this.classList.add('active');
+            
+            // Scroll to center the active card
+            this.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        });
+    });
+    
+    // Close card when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.event-card')) {
+            eventCards.forEach(card => card.classList.remove('active'));
+        }
+    });
+
+    // Join community button
+    const joinBtn = document.getElementById('joinBtn');
+    if (joinBtn) {
+        joinBtn.addEventListener('click', function() {
+            window.open('https://example.com/join', '_blank');
+        });
+    }
 });

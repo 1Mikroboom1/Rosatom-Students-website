@@ -1,0 +1,45 @@
+/* Стили для страницы с картой */
+.map-section {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.map-image {
+  flex: 2;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.map-image img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.map-lists {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.map-list {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.map-list h3 {
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.map-list ul {
+  list-style: none;
+}
+
+.map-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}

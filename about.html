@@ -1,62 +1,24 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Информация о нас - Студенты Росатома</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>О нас - Студенты Росатома</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/about.css">
     <link rel="icon" type="image/x-icon" href="assets/icon.png">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header with original structure -->
     <header class="header">
-        <img class="logo_sr" src="assets\Студенты Росатома Горизонтальный Белый.svg" alt="Студенты Росатома">
+        <img class="logo_sr" src="assets/Студенты Росатома Горизонтальный Белый.svg" alt="Студенты Росатома">
         <div class="header-buttons">
             <button id="menuBtn">Меню</button>
             <button id="loginBtn">Войти в кабинет</button>
         </div>
     </header>
 
-    <!-- Menu (Hidden by default) -->
+    <!-- Original menu structure -->
     <div id="menu" class="menu hidden">
         <div class="menu-content">
             <a href="index.html">Главная страница</a>
@@ -68,7 +30,7 @@
         </div>
     </div>
 
-    <!-- Login Modal (Hidden by default) -->
+    <!-- Original modal structure -->
     <div id="loginModal" class="modal hidden">
         <div class="modal-content">
             <span id="closeModal" class="close">×</span>
@@ -82,27 +44,49 @@
         </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Основной контент страницы -->
     <main>
         <h1>Студенты Росатома | ИНФО</h1>
-        <section class="content-section">
-            <div class="content-block">
-                <h2>Что руководителя ФНО и его ФНО</h2>
-                <p>Руководитель ФНО отвечает за координацию деятельности студенческого сообщества, организует мероприятия, направленные на развитие студентов, и поддерживает связь с предприятиями.</p>
+        
+        <section class="university-info">
+            <div class="leaders-grid">
+                <div class="leader-card">
+                    <img src="https://via.placeholder.com/150" alt="Руководитель ячейки">
+                    <h3>Иванов Иван Иванович</h3>
+                    <p>Руководитель ячейки</p>
+                </div>
+                <div class="leader-card">
+                    <img src="https://via.placeholder.com/150" alt="Руководитель по работе с предприятиями">
+                    <h3>Петрова Мария Сергеевна</h3>
+                    <p>Руководитель по направлению контакта с предприятиями</p>
+                </div>
+                <div class="leader-card">
+                    <img src="https://via.placeholder.com/150" alt="Руководитель по работе со школьниками">
+                    <h3>Сидоров Алексей Дмитриевич</h3>
+                    <p>Руководитель по направлению работы со школьниками</p>
+                </div>
             </div>
-            <div class="content-block">
-                <h2>Что руководителя ФНО по направлению контакта с предприятиями и его ФНО</h2>
-                <p>Руководитель по направлению контакта с предприятиями занимается налаживанием связей между студентами и партнёрами, организует стажировки и практики.</p>
+
+            <div class="info-section">
+                <h2>Руководители</h2>
+                <div class="fun-photos">
+                    <img src="https://via.placeholder.com/200" alt="Фото прикол 1">
+                    <img src="https://via.placeholder.com/200" alt="Фото прикол 2">
+                    <img src="https://via.placeholder.com/200" alt="Фото прикол 3">
+                </div>
+                <div class="useful-info">
+                    <h3>Полезная информация</h3>
+                    <p>Здесь собраны все полезные материалы и контакты для участников сообщества...</p>
+                </div>
+                <div class="actions">
+                    <button id="join-btn">Вступить в сообщество</button>
+                    <a href="https://vk.com/rosatomstudents" class="social-btn">ВК Студенты ИГЭУ</a>
+                </div>
             </div>
-            <div class="content-block">
-                <h2>Что руководителя по направлению работы со школьниками в ВУЗе, его ФНО</h2>
-                <p>Руководитель по направлению работы со школьниками организует образовательные программы, мастер-классы и мероприятия для школьников, чтобы привлечь их в сферу ядерной энергетики.</p>
-            </div>
-            <a href="https://example.com/join" class="join-btn">Вступить в сообщество</a>
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer with original structure -->
     <footer class="footer">
         <a href="https://t.me/rosatomstudent" class="footer-link social-btn">Телеграм</a>
         <a href="https://vk.com/rosatomstudent" class="footer-link social-btn">Группа ВК</a>

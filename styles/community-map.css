@@ -24,6 +24,12 @@
   overflow: hidden; /* Скрываем всё, что не помещается */
 }
 
+.map-list-link {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
 .map-list h3 {
   color: var(--accent-color);
 }

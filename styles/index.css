@@ -26,6 +26,13 @@
   border-radius: 20px;
 }
 
+.rosatom-students {
+  display: flex;
+  justify-content: space-evenly;
+  columns: 2;
+  font-size: large;
+}
+
 .quote {
   font-style: italic;
   margin-bottom: 2rem;
@@ -36,7 +43,21 @@
   background: rgba(255, 255, 255, 0.1);
   padding: 2rem;
   border-radius: 10px;
+  font-size: large;
 }
+
+.about ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 160px; /* Высота для 5 пунктов (примерно) */
+  overflow-y: auto; /* Включаем вертикальную прокрутку */
+  scroll-behavior: smooth; /* Плавная прокрутка */
+  /* Стилизация скроллбара */
+  scrollbar-width: thin;
+  scrollbar-color: #4fc3f7 rgba(255, 255, 255, 0.1);
+}
+
 
 h2 {
   color: var(--accent-color);

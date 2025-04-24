@@ -26,6 +26,12 @@
   overflow: hidden; /* Скрываем всё, что не помещается */
 }
 
+.university-list-link {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
 .university-list h3 {
   color: var(--accent-color);
 }

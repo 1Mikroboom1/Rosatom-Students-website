@@ -204,3 +204,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initSlides();
     setInterval(nextSlide, slideDuration);
 });
+
+function meme() {
+    const audio = new Audio('assets/about/What Is Love but its only Vladislav.mp3');
+    audio.play()
+        .then(() => console.log("Воспроизведение начато"))
+        .catch(error => console.error("Ошибка:", error));
+}

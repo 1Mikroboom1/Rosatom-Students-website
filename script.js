@@ -39,6 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function ProfilePath() {
+        window.location.href = 'profile.html';
+    }
+
     // Универсальный код для социальных кнопок
     const socialBtns = document.querySelectorAll('.social-btn');
     socialBtns.forEach(btn => {

@@ -54,7 +54,7 @@
 
 /* Основные переменные цветов */
 :root {
-  --primary-bg: #1e3c72;
+  --primary-bg: #003779;
   --secondary-bg: #2a5298;
   --accent-color: #4fc3f7;
   --text-light: #ffffff;
@@ -79,6 +79,10 @@ body {
   font-family: 'RosatomWeb', Arial, sans-serif;
   line-height: 1.6;
   min-height: 100vh;
+  background-image: url('../assets/background-pattern.svg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 /* Шапка */
@@ -87,7 +91,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background: rgba(30, 60, 114, 0.9);
+  background: rgba(30, 60, 114);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -217,16 +221,23 @@ body {
 /* Основной контент */
 main {
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 0 20px;
+}
+
+.main-content {
+  justify-self: center;
+  align-self: center;
+  width: 95%;
+  background-color: #11559B;
+  padding: 20px;
 }
 
 /* Подвал */
 .footer {
-  background: rgba(30, 60, 114, 0.9);
+  background: rgba(30, 60, 114);
   padding: 20px;
   text-align: center;
-  margin-top: 40px;
 }
 
 .social-buttons {

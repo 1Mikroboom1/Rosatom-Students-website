@@ -39,10 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function ProfilePath() {
-        window.location.href = 'profile.html';
-    }
-
     // Универсальный код для социальных кнопок
     const socialBtns = document.querySelectorAll('.social-btn');
     socialBtns.forEach(btn => {
@@ -214,4 +210,8 @@ function meme() {
     audio.play()
         .then(() => console.log("Воспроизведение начато"))
         .catch(error => console.error("Ошибка:", error));
+}
+
+function ProfilePath() {
+    window.location.href = 'profile.html';
 }

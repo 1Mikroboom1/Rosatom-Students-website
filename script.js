@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Универсальный код для социальных кнопок
+    // Универсальный код для кнопок под соц-сети
     const socialBtns = document.querySelectorAll('.social-btn');
     socialBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {

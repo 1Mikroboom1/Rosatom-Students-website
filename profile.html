@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>О нас - Студенты Росатома</title>
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/about.css">
+    <link rel="stylesheet" href="styles/profile.css">
     <link rel="icon" type="image/x-icon" href="assets/icon.png">
 </head>
 <body>
@@ -14,7 +14,6 @@
         <img class="logo_sr" src="assets/Студенты Росатома Горизонтальный Белый.svg" alt="Студенты Росатома">
         <div class="header-buttons">
             <button id="menuBtn">Меню</button>
-            <button id="loginBtn">Войти в кабинет</button>
         </div>
     </header>
 
@@ -30,25 +29,48 @@
         </div>
     </div>
 
-    <!-- Original modal structure -->
-    <div id="loginModal" class="modal hidden">
-        <div class="modal-content">
-            <span id="closeModal" class="close">×</span>
-            <h2>Вход в кабинет</h2>
-            <div class="login-form">
-                <input type="text" placeholder="Логин" />
-                <input type="password" placeholder="Пароль" />
-                <button href="profile.html">Войти</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Основной контент страницы -->
     <main>
-        <div class="main-content">
+        <div class="main-profile-content">
             <h1>Студенты Росатома | Личный кабинет</h1>
-            
-            <p>Тут будет контент</p>
+            <section class="profile-menu">
+                <p>Тут будет менюшка</p>
+            </section>
+            <section class="profile-content">
+                <p>Тут будет контентище</p>
+            </section>
+            <section class="profile">
+                <div class="tasks-container">
+                    <div class="task-list">
+                        <div class="task-item active" data-task="1">Профиль</div>
+                        <div class="task-item" data-task="2">Мероприятия</div>
+                        <div class="task-item" data-task="3">Заявки</div>
+                        <div class="task-item" data-task="4">Достижения</div>
+                    </div>
+                    <div class="task-description">
+                        <div id="task-1" class="task-desc active">
+                            <h2>Профиль</h2>
+                            <p>Тут будет чёт с именем и т.д., а пока Владос</p>
+                            <img src="assets/main/Информирование.png" alt="Профиль">
+                        </div>
+                        <div id="task-2" class="task-desc">
+                            <h2>Мероприятия</h2>
+                            <p>Тут добавим инфу про меро какие-то</p>
+                            <img src="assets/main/Привлечение школьников.png" alt="Мероприятия">
+                        </div>
+                        <div id="task-3" class="task-desc">
+                            <h2>Заявки</h2>
+                            <p>Какие-то заявки</p>
+                            <img src="assets/profile/3.png" alt="Заявки">
+                        </div>
+                        <div id="task-4" class="task-desc">
+                            <h2>Достижения</h2>
+                            <p>Чего-то достиг</p>
+                            <img src="assets/profile/4.png" alt="Достижения">
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 

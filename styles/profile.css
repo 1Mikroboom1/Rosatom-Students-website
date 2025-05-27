@@ -1,0 +1,82 @@
+:root {
+  --profile-button-bg: none;
+  --profile-button-hover: #3275B6;
+  --profile-item-bg: #ffffff;
+  --profile-item-header: #003779;
+  --profile-item-text: #000000;
+}
+
+.main-profile-content {
+  justify-self: center;
+  align-self: center;
+  width: 95%;
+  background-color: var(--secondary-bg);
+  padding: 20px;
+  min-height: 850px;
+}
+
+.tasks-container {
+  display: flex;
+  margin-top: 1.5rem;
+}
+
+.task-list {
+  flex: 1;
+}
+
+.task-item {
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.task-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.task-item.active {
+  background: var(--button-bg);
+  color: white;
+}
+
+.task-description {
+  flex: 2;
+  padding: 1rem;
+  background: var(--profile-item-bg);
+}
+
+.task-desc {
+  display: none;
+  h2 {
+    color: var(--profile-item-header);
+  }
+  p {
+    color: var(--profile-item-text);
+  }
+}
+
+.task-desc.active {
+  display: block;
+}
+
+.task-desc img {
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  border-radius: 4px;
+}
+
+/* Адаптивность для главной страницы */
+@media (max-width: 768px) {
+  .tasks-container {
+    flex-direction: column;
+  }
+  
+  .traits {
+    gap: 1rem;
+  }
+  
+  .trait {
+    width: 120px;
+  }
+}

@@ -55,13 +55,13 @@
 /* Основные переменные цветов */
 :root {
   --primary-bg: #003779;
-  --secondary-bg: #2a5298;
+  --secondary-bg: #11559B;
   --accent-color: #4fc3f7;
   --text-light: #ffffff;
   --text-dark: #333333;
   --card-bg: rgba(255, 255, 255, 0.9);
   --button-bg: #1976d2;
-  --button-hover: #1565c0;
+  --button-hover: #3275B6;
   --menu-bg: rgba(30, 60, 114, 0.95);
   --modal-bg: rgba(255, 255, 255, 0.95);
 }
@@ -229,7 +229,7 @@ main {
   justify-self: center;
   align-self: center;
   width: 95%;
-  background-color: #11559B;
+  background-color: var(--secondary-bg);
   padding: 20px;
 }
 
